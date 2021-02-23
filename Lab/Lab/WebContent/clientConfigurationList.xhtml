@@ -1,0 +1,69 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+	<ui:define name="content">
+		<h:form id="form" prependId="false">
+			<div style="padding-top: 20px;padding-bottom: 10px;">
+				<i id="toggleMenu" class="fa fa-3x fa-angle-left" onclick="PF('mainContainer').toggle('west')" style="position: absolute; left: 35px; top: 24px; cursor: pointer; color:#d9d9d9; background: transparent; padding-bottom: 3px"/>
+				<p:breadCrumb homeDisplay="false" style="border:0px solid green;padding-left:40px;">
+					<p:menuitem value="Home"  />
+				    <p:menuitem value="Client Configuration List"  />
+				</p:breadCrumb>
+			</div>
+		    <div class="tabelaGenerica">
+				<h2>Client Configuration List</h2>
+				<h:panelGroup id="panelGroup" >
+					<p:dataTable id="tabela" value="#{clientConfigurationListBean.list}" var="row" rows="10" editable="true" disabledSelection="true" 
+							paginator="true" paginatorPosition="bottom" filterDelay="200"
+							paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="5,10,20,50" emptyMessage="Sem registos"
+							styleClass="display: inline-table;" widgetVar="table">
+						
+						<p:column width="52">
+							<f:facet name="header">
+								<h:link outcome="clientConfiguration" styleClass="fa fa-plus-square" title="Create new"/>
+							</f:facet>
+							<p:commandLink styleClass="fa fa-trash-o" title="Remove" action="#{clientConfigurationListBean.onRowDelete(row)}" update="tabela"/>
+							<h:link outcome="clientConfiguration" styleClass="fa fa-pencil" title="Edit">
+								<f:param name="id" value="#{row.clientConfigurationId}"/>
+							</h:link>
+						</p:column>
+						
+						
+						<p:column headerText="Client" sortBy="#{row.lsClient.name}" filterBy="#{row.lsClient.name}">
+							<h:link outcome="client" title="View" value="#{row.lsClient.name}">
+								<f:param name="id" value="#{row.lsClient.clientId}"/>
+							</h:link>
+						</p:column>
+						
+						
+						<p:column headerText="Phone Number" sortBy="#{row.phoneNumber}" filterBy="#{row.phoneNumber}" filterable="true" filterMatchMode="contains" >
+							<h:outputText value="#{row.phoneNumber}"/>
+						</p:column>
+						
+						
+						<p:column headerText="Client Status" sortBy="#{row.lsClientStatus.description}" filterBy="#{row.lsClientStatus.description}">
+					        <h:outputText value="#{row.lsClientStatus.description}"/>
+						</p:column>
+						
+						
+						<p:column headerText="Balance" sortBy="#{row.balance}" filterBy="#{row.balance}" filterable="true" filterMatchMode="contains" >
+							<h:outputText value="#{row.balance}"/>
+						</p:column>
+						
+						
+						<p:column headerText="Creation Date" sortBy="#{row.creationTimestamp}" filterBy="#{row.creationTimestamp}" filterable="true" filterMatchMode="contains" >
+							<h:outputText value="#{row.creationTimestamp}"/>
+						</p:column>
+					</p:dataTable>
+					
+				</h:panelGroup>
+			</div>
+			
+		</h:form>
+	</ui:define>
+</ui:composition>

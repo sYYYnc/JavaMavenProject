@@ -1,0 +1,72 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+	<ui:define name="content">
+		<h:form id="form" prependId="false">
+			<div style="padding-top: 20px;padding-bottom: 10px;">
+				<i id="toggleMenu" class="fa fa-3x fa-angle-left" onclick="PF('mainContainer').toggle('west')" style="position: absolute; left: 35px; top: 24px; cursor: pointer; color:#d9d9d9; background: transparent; padding-bottom: 3px"/>
+				<p:breadCrumb homeDisplay="false" style="border:0px solid green;padding-left:40px;">
+					<p:menuitem value="Home"  />
+				    <p:menuitem value="Operation"  />
+				</p:breadCrumb>
+			</div>
+			
+			<div class="tabelaGenerica">
+				<h2>Agent Selection</h2>
+				<h:panelGrid id="panelGrid1" columns="2" cellpadding="5" >
+				
+					<p:outputLabel value="Agent: " />
+					<p:selectOneMenu value="#{lsAgent}" effect="none" converter="agent" style="width:200px">
+						<f:selectItem itemLabel="Select Agent" />
+						<f:selectItems value="#{listAgent}" var="agent" itemLabel="#{agent.name}" itemValue="#{agent}"/>
+					</p:selectOneMenu>
+					
+					<p:outputLabel value="Management Balance: " />
+            		<h:outputText id="managementBalance" value="#{listAgent.managementBalance}"/>
+            	</h:panelGrid>
+    			<p:separator style="margin-bottom:30px" />
+    		</div>
+    		
+			<div class="tabelaGenerica" >
+				<h2>Client Selection</h2>
+				<h:panelGrid id="panelGrid2" columns="2" cellpadding="5" >
+				
+					<p:outputLabel value="Client: " />
+					<p:selectOneMenu value="#{lsClient}" effect="none" converter="client" style="width:200px">
+						<f:selectItem itemLabel="Select Client" itemValue="" noSelectionOption="true" />
+						<f:selectItems value="#{listClient}" var="client" itemLabel="#{client.name}" itemValue="#{client}"/>
+					</p:selectOneMenu>
+					
+					<p:outputLabel value="Phone Number: " />
+            		<p:selectOneMenu id="phoneNumber" value="#{lsClient}" effect="none" converter="client" style="width:200px">
+                		<f:selectItem itemLabel="Select Phone Number" itemValue="" noSelectionOption="true" />
+                		<f:selectItems value="#{listClient}" var="client" itemLabel="#{client.phoneNumber}" itemValue="#{client}" />
+            		</p:selectOneMenu>
+            	</h:panelGrid>
+    			<p:separator style="margin-bottom:30px" />
+			</div>
+			
+			<div class="tabelaGenerica">
+				<h2>Operations</h2>
+				<h:panelGrid id="panelGrid3" columns="2" cellpadding="5" >
+				
+					<p:outputLabel value="Transaction Type: " />
+					<p:selectOneMenu value="#{lsTransactionType}" effect="none" converter="transaction" style="width:200px">
+						<f:selectItem itemLabel="Select Transaction" />
+						<f:selectItems value="#{listTransactionType}" var="transaction" itemLabel="#{listTransactionType.description}" itemValue="#{transaction}"/>
+					</p:selectOneMenu>
+					
+					<p:outputLabel value="Value: " />
+            		
+            	</h:panelGrid>
+    		</div>
+    		
+        	<p:commandButton value="OK" action="#{operationBean.displayMessage}" icon="fa fa-check" />	
+        								
+		</h:form>
+	</ui:define>
+</ui:composition>

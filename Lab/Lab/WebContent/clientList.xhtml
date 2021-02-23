@@ -1,0 +1,53 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+	<ui:define name="content">
+		<h:form id="form" prependId="false">
+			<div style="padding-top: 20px;padding-bottom: 10px;">
+				<i id="toggleMenu" class="fa fa-3x fa-angle-left" onclick="PF('mainContainer').toggle('west')" style="position: absolute; left: 35px; top: 24px; cursor: pointer; color:#d9d9d9; background: transparent; padding-bottom: 3px"/>
+				<p:breadCrumb homeDisplay="false" style="border:0px solid green;padding-left:40px;">
+					<p:menuitem value="Home"  />
+				    <p:menuitem value="Client List"  />
+				</p:breadCrumb>
+			</div>
+		    <div class="tabelaGenerica">
+				<h2>Client List</h2>
+				<h:panelGroup id="panelGroup" >
+					<p:dataTable id="tabela" value="#{clientListBean.list}" var="row" rows="10" editable="true" disabledSelection="true" 
+							paginator="true" paginatorPosition="bottom" filterDelay="200"
+							paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="5,10,20,50" emptyMessage="Sem registos"
+							styleClass="display: inline-table;">
+						<p:column width="52">
+							<f:facet name="header">
+								<h:link outcome="client" styleClass="fa fa-plus-square" title="Create new"/>
+							</f:facet>
+							<p:commandLink styleClass="fa fa-trash-o" title="Remove" action="#{clientListBean.onRowDelete(row)}" update="tabela"/>
+							<h:link outcome="client" styleClass="fa fa-pencil" title="Edit">
+								<f:param name="id" value="#{row.clientId}"/>
+							</h:link>
+						</p:column>
+						<p:column headerText="Name" sortBy="#{row.name}" filterBy="#{row.name}" filterable="true" filterMatchMode="contains" >
+							<h:outputText value="#{row.name}"/>
+						</p:column>
+						<p:column headerText="NIF" sortBy="#{row.nif}" filterBy="#{row.nif}" filterable="true" filterMatchMode="contains" >
+							<h:outputText value="#{row.nif}"/>
+						</p:column>
+						<p:column headerText="Address" sortBy="#{row.address}" filterBy="#{row.address}" filterable="true">
+							<h:outputText value="#{row.address}"/>
+						</p:column>
+						<p:column width="94" headerText="Is Provider" sortBy="#{row.isProvider}" filterBy="#{row.isProvider}" filterable="true" filterMatchMode="contains" >
+							<h:outputText value="#{row.isProvider ? 'True' : 'False'}"/>
+						</p:column>
+					</p:dataTable>
+					
+				</h:panelGroup>
+			</div>
+			
+		</h:form>
+	</ui:define>
+</ui:composition>

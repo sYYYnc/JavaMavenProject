@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+	<h:form id="menuForm">
+	
+		<p:panelMenu id="menu">
+			<p:submenu label="Portal Selfcare">
+	        	<p:menuitem value="Client List" icon="fa fa-users" url="clientList.xhtml"/>
+	        	<p:menuitem value="Client Configuration List" icon="fa fa-address-card-o" url="clientConfigurationList.xhtml"/>
+	        	<p:menuitem value="Operation List" icon="fa fa-exchange" url="operationList.xhtml"/>
+	        </p:submenu>
+			<p:submenu label="View">
+	        	<p:menuitem value="Client" icon="fa fa-users" url="client.xhtml"/>
+	        	<p:menuitem value="Client Configuration" icon="fa fa-address-card-o" url="clientConfiguration.xhtml"/>
+	        	<p:menuitem value="Operation" icon="fa fa-exchange" url="operation.xhtml"/>
+	        </p:submenu>
+	        <p:submenu label="Configuration">
+	        </p:submenu>
+	    </p:panelMenu>
+    </h:form>
+    
+    <script>
+    $('#menu').ready(function() {
+		$(this).find('.ui-panelmenu-header > span.ui-icon').addClass('fa fa-2x');
+		$(this).find('span.ui-panelmenu-icon').addClass('fa fa-lg');
+	});
+    	
+    </script>
+    
+</ui:composition>
