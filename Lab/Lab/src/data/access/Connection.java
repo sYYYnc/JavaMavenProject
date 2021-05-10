@@ -39,7 +39,7 @@ public final class Connection {
 	public static Boolean insert(Object obj) {
 		return insert(new Em(), obj);
 	}
-	//teste
+	
 	public static Boolean insert(Em em, Object obj) {
 		try {
 			return insert(em, obj, true);
