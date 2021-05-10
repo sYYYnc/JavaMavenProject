@@ -39,7 +39,7 @@ public final class Connection {
 	public static Boolean insert(Object obj) {
 		return insert(new Em(), obj);
 	}
-	
+	//teste
 	public static Boolean insert(Em em, Object obj) {
 		try {
 			return insert(em, obj, true);
@@ -274,7 +274,7 @@ public final class Connection {
 				em.close();
 			}
 		}catch(Exception e){
-			LOG.error("Não foi possivel fechar a ligação.",e);
+			LOG.error("NÃ£o foi possivel fechar a ligaÃ§Ã£o.",e);
 		}
 	}
 	
