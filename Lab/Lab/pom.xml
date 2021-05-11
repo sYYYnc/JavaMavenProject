@@ -135,7 +135,7 @@
 		      <plugin>
 			<groupId>org.wildfly.plugins</groupId>
 			<artifactId>wildfly-maven-plugin</artifactId>
-			<version>1.0.0.Final</version>
+			<version>1.0.2.Final</version>
 			<configuration>
 			<hostname>127.0.0.1</hostname>
 			<username>admin</username>
