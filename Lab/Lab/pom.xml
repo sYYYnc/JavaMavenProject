@@ -125,17 +125,7 @@
 	          <debug>true</debug>
 	        </configuration>
 	      </plugin>
-	      <plugin>
-		   <groupId>org.wildfly.plugins</groupId>
-		   <artifactId>wildfly-maven-plugin</artifactId>
-		   <version>1.0.2.Final</version>
-		   <configuration>
-		      <hostname>${hostname}</hostname>
-		      <port>9990</port>
-		      <username>admin</username>
-		      <password>admin</password>
-		   </configuration>
-	     </plugin>
+	      
 	    </plugins>
   </build>
 </project>
